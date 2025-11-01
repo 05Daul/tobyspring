@@ -1,15 +1,23 @@
 package daulspring.hellospring;
 
-import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 /// springboot를 사용치 않고, spring을 사용해보기
-abstract public class PaymentService {
+public class PaymentService {
+  private final WebApiExRateProvider rateProvider;
+  private final SimpleExRateProvider simpleRateProvider;
+
+  public PaymentService() {
+    this.rateProvider = new WebApiExRateProvider();
+    this.simpleRateProvider = new SimpleExRateProvider();
+  }
 
   public Payment prepare(String currency, BigDecimal foreignCurrencyAmount, Long orderId) {
+
     try {
-      BigDecimal exRate = getExRate(currency);
+      //BigDecimal exRate = rateProvider.getWebExRate(currency);
+      BigDecimal exRate = simpleRateProvider.getExRate(currency);
       // 금액계산
       BigDecimal convertedAmount = foreignCurrencyAmount.multiply(exRate);
       // 유효시간 계산
@@ -24,6 +32,4 @@ abstract public class PaymentService {
 
     return null;
   }
-
-  abstract BigDecimal getExRate(String currency) throws IOException;
 }
