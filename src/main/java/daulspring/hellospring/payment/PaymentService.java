@@ -1,9 +1,11 @@
-package daulspring.hellospring;
+package daulspring.hellospring.payment;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import org.springframework.stereotype.Service;
 
 /// springboot를 사용치 않고, spring을 사용해보기
+@Service
 public class PaymentService {
   private final ExRateProvider rateProvider;
 

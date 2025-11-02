@@ -1,4 +1,4 @@
-package daulspring.hellospring;
+package daulspring.hellospring.exrate;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.math.BigDecimal;
