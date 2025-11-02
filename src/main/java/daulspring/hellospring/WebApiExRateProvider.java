@@ -9,9 +9,11 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.stream.Collectors;
 
-public class WebApiExRateProvider {
+public class WebApiExRateProvider implements ExRateProvider {
   // 환율가져오기 : https://open.er-api.com/v6/latest/USD
-  BigDecimal getWebExRate(String currency) throws IOException {
+
+  @Override
+  public BigDecimal getExRate(String currency) throws IOException {
     URL url = new URL("https://open.er-api.com/v6/latest/" + currency);
     HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
     BufferedReader br = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
